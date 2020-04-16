@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 spring:
   application:
@@ -12,7 +12,7 @@ spring:
 
 eureka:
   instance:
-    instance-id: payment-service-8001
+    instance-id: payment-service-8002
     prefer-ip-address: true
   client:
     register-with-eureka: true  #表示向注册中心注册自己 默认为true
@@ -20,13 +20,9 @@ eureka:
     service-url:
 #      defaultZone: http://localhost:7001/eureka/  # 注册地址
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/ #向集群注册
-info:
-  app.name: cloud-payment-service
-  company.name: www.atguigu.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
-
-
+#  instance:
+#    instance-id: payment8001
+#    prefer-ip-address: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.atguigu.springcloud.entities  #所有entity别名所在包
