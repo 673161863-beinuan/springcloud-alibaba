@@ -1,0 +1,25 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-feign-interface
+
+eureka:
+  instance:
+    instance-id: cloud-feign-interface
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/ # 入驻地址
+# 防止超时
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+# feign日志级别
+logging:
+  level:
+    com.atguigu.springcloud.service.FeignService: debug

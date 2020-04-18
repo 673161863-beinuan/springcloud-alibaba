@@ -11,6 +11,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @Classname PaymentController
@@ -77,5 +78,18 @@ public class PaymentController {
 
         return this.discoveryClient;
 
+    }
+
+    // 测试超时
+    @RequestMapping("/payment/timeout")
+    public CommonResult<Integer> testTimeout(){
+
+        try {
+
+            Thread.sleep(3000);
+        }catch (Exception e){
+
+        }
+        return new CommonResult(200, "未超时!",serverPort) ;
     }
 }
