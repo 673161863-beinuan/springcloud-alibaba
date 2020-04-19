@@ -48,7 +48,7 @@ public class PaymentController {
         // 判断payment是否为空
         if (payment != null) {
             // 不为空，查询到数据
-            return new CommonResult(200, "查询" + id + "号记录成功  serverPort =" + serverPort, payment);
+            return new CommonResult(200, "查询" + id + "号记录成功 serverPort = " + serverPort, payment);
         } else {
             // 为空，没有此条数据
             return new CommonResult(444, "没有" + id + "号记录", null);

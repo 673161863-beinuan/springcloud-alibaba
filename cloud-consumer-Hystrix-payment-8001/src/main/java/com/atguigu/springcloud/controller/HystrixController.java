@@ -31,4 +31,10 @@ public class HystrixController {
             log.info("******timeout_id = "+id);
         return hystrixService.send_timeout(id);
     }
+
+    @RequestMapping("/hystrix/circuit/breaker/{id}")
+    public String testHystrixCircuitBreaker(@PathVariable("id") Integer id){
+
+        return hystrixService.testHystrixCircuitBreaker(id);
+    }
 }
