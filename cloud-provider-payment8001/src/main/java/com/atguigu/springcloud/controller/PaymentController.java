@@ -92,4 +92,11 @@ public class PaymentController {
         }
         return new CommonResult(200, "未超时!",serverPort) ;
     }
+
+
+    @GetMapping("/get/zipkin")
+    public String testZipkin(){
+
+        return " test zipkin 链路监控 O(∩_∩)O哈哈~";
+    }
 }

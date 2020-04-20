@@ -32,4 +32,10 @@ public class OrderController {
         return restTemplate.getForObject(URL + "/get/payment/by/" + id, CommonResult.class);
     }
 
+    @GetMapping("/consumer/get/zipkin")
+    public String testZipkin(){
+
+        return restTemplate.getForObject(URL + "/get/zipkin",String.class);
+    }
+
 }
