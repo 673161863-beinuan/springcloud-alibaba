@@ -1,19 +1,19 @@
-package com.atguigu.springcloud.alibab;
+package com.atguigu.springcloud.alibaba;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @Classname OrderMain84
+ * @Classname PaymentMain9004
  * @Author: Zhao Minglei
- * @Date: 2020/4/22 0022 16:46
+ * @Date: 2020/4/23 0023 14:29
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class OrderMain84 {
+public class PaymentMain9004 {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain84.class, args);
+        SpringApplication.run(PaymentMain9004.class, args);
     }
 }

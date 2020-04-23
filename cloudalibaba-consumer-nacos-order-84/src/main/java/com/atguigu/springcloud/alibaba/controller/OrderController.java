@@ -1,6 +1,7 @@
-package com.atguigu.springcloud.alibab.controller;
+package com.atguigu.springcloud.alibaba.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.atguigu.springcloud.alibaba.service.PaymentService;
 import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.utils.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,17 @@ public class OrderController {
     public static final String URL = "httP://cloud-alibaba-nacos-provider-payment";
 
 
-    @SentinelResource(value = "payment",fallback = "fallbackHandler")
+    /**
+     * exceptionsToIgnore 忽略属性
+     */
+    @SentinelResource(value = "payment", fallback = "fallbackHandler", exceptionsToIgnore = IllegalArgumentException.class)
     @GetMapping("/consumer/get/payment/{id}")
-    public CommonResult getPaymentInfo(@PathVariable("id") Long id){
+    public CommonResult getPaymentInfo(@PathVariable("id") Long id) {
 
         CommonResult result = restTemplate.getForObject(URL + "/get/payment/" + id, CommonResult.class);
-        if(id == 4){
+        if (id == 4) {
             throw new IllegalArgumentException("参数异常");
-        }else if(id > 4){
+        } else if (id > 4) {
             throw new IllegalArgumentException("没有此ID");
         }
         return result;
@@ -38,9 +42,22 @@ public class OrderController {
     }
 
     //fallback
-    public CommonResult fallbackHandler(@PathVariable("id") Long id,Throwable e){
+    public CommonResult fallbackHandler(@PathVariable("id") Long id, Throwable e) {
 
         Payment payment = new Payment(id, null);
-        return new CommonResult(444, "兜底方法..." + payment,e.getMessage());
+        return new CommonResult(444, "兜底方法..." + payment, e.getMessage());
+    }
+
+    //------------------------openfeign
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @GetMapping("/consumer/getpayment/info/from/openfeign/{id}")
+    @SentinelResource(value = "consumerOpenFeignPayment")
+    public CommonResult getPaymentInfoFromOpenfeign(@PathVariable("id") Long id){
+
+        return paymentService.getPaymentInfoOfOpenFeign(id);
+
     }
 }
